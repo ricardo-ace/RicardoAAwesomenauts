@@ -13,10 +13,10 @@ game.PlayerEntity = me.Entity.extend({
     //choosing a velocity for the player
     this.body.setVelocity(5, 20);
     //thiks is making the player walk in a certain animation 
-     this.renderable.addAniamtion('idle', [78]); 
-    this.renderable.addAniamtion('walk', [117, 118, 119, 120, 121, 122, 123, 124, 125], 80); 
+    this.renderable.addAnimation("idle", [78]); 
+    this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80); 
     
-    this.renderable.setCurrentAnimation('idle');
+    this.renderable.setCurrentAnimation("idle");
     },
     //checking if the right key was pressed
     update: function(delta){
@@ -34,11 +34,11 @@ game.PlayerEntity = me.Entity.extend({
         
         
         if(this.body.vel.x !== 0){
-            if(!this.renerable.isCurrentAnimation("walk")){
+            if(!this.renderable.isCurrentAnimation("walk")){
                 this.renderable.setCurrentAnimation('walk');
             }
         }else{
-            this.renderable.setCurrenntAnimation("idle");
+            this.renderable.setCurrentAnimation("idle");
         }
         
         
