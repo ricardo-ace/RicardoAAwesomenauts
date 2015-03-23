@@ -12,6 +12,8 @@ game.PlayerEntity = me.Entity.extend({
         }]);
     //choosing a velocity for the player
     this.body.setVelocity(5, 20);
+    //keeps track of what direction your character is going in 
+    this.facing = "right";
     //the screen follows the player
     me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH)
     //thiks is making the player walk in a certain animation 
@@ -28,11 +30,20 @@ game.PlayerEntity = me.Entity.extend({
             //setVelocity() and multiplying it by me.timer.tick.
             //me.timer.tick makes the movement look smooth          
             this.body.vel.x += this.body.accel.x * me.timer.tick;
+            this.facing = "right";
             this.flipX(true);
             //this is telling it to switch
-           
+        }else if(me.input.isKeyPressed ("left")){
+            this.facing = "left";
+           this.body.vel.x -=this.body.accel.x * me.timer.tick;
+           this.flipx(false);   
         }else{
             this.body.vel.x = 0;
+        }
+        
+        if (me.input.KeyPressed("jump") && !this.jumping && !this.falling){
+            this.jumping = true;
+            this.body.vel.y -= this.body.accel.y * me.timer.tick;
         }
         
        
@@ -60,11 +71,28 @@ game.PlayerEntity = me.Entity.extend({
         
         
          
-        
+        me.colision.check(this, true, this.colliddeHandler.bind(this), true);
         this.body.update(delta);
         
         this._super(me.Entity, "update", [delta]);
         return true;
+    },
+    
+    
+    collideHandler: function(response){
+      if(responnse.b.type==='EnemyBaseEntity'){
+          var ydif = this.pos.y - response.b.y;
+          var xdif = this.pos.x - response.b.x;
+          
+          
+          if(xdif>-35 && this.facing==='right' && (xdif<0)){
+              this.body.vel.x = 0;
+              this.pos.x = this.pos.x -1;
+          }else if(xdif>70 && this.faacing==='left' && xdif>0){
+              this.body.vel.x = 0;
+              this.pos.x = this.pos.x +1;
+          }
+      }  
     }
 });
 //it is making the players base tower
@@ -77,10 +105,10 @@ game.PlayerBaseEntity = me.Entity.extend({
               spritewidth:"100",
               spriteheight:"100",
               getShape: function(){
-                  return (new me.Rect(0, 0, 100, 100)).Polygon();
+                  return (new me.Rect(0, 0, 100, 70)).Polygon();
                   
               }
-        }]);
+        }]);    
         //to say the tower his not been destroyed
         this.broken = false;
         this.health = 10;
@@ -122,7 +150,7 @@ game.EnemyBaseEntity = me.Entity.extend({
               spritewidth:"100",
               spriteheight:"100",
               getShape: function(){
-                  return (new me.Rect(0, 0, 100, 100)).Polygon();
+                  return (new me.Rect(0, 0, 100, 70)).Polygon();
                   
               }
         }]);
