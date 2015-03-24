@@ -14,6 +14,9 @@ game.PlayerEntity = me.Entity.extend({
     this.body.setVelocity(5, 20);
     //keeps track of what direction your character is going in 
     this.facing = "right";
+    this.now = new Date().getTime();
+    this.lastHit = this.now;
+    this.lastAttack = new Date().getTime(); 
     //the screen follows the player
     me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH)
     //thiks is making the player walk in a certain animation 
@@ -25,6 +28,7 @@ game.PlayerEntity = me.Entity.extend({
     },
     //checking if the right key was pressed
     update: function(delta){
+        this.now = new Date().getTime();
         if(me.input.isKeyPressed("right")){
             //adds to the position of my x by adding the velocity defined above in 
             //setVelocity() and multiplying it by me.timer.tick.
@@ -41,8 +45,8 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x = 0;
         }
         
-        if (me.input.KeyPressed("jump") && !this.jumping && !this.falling){
-            this.jumping = true;
+        if (me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling){
+            this.body.jumping = true;
             this.body.vel.y -= this.body.accel.y * me.timer.tick;
         }
         
@@ -84,13 +88,22 @@ game.PlayerEntity = me.Entity.extend({
           var ydif = this.pos.y - response.b.y;
           var xdif = this.pos.x - response.b.x;
           
+          if( ydif<-40 && xdif< 70 && xdif>-35){
+              this.body.falling = false;
+              this.body.vel.y = -1;
+          }
           
-          if(xdif>-35 && this.facing==='right' && (xdif<0)){
+            else if(xdif>-35 && this.facing==='right' && (xdif<0) ){
               this.body.vel.x = 0;
               this.pos.x = this.pos.x -1;
           }else if(xdif>70 && this.faacing==='left' && xdif>0){
               this.body.vel.x = 0;
               this.pos.x = this.pos.x +1;
+          }
+          if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit>= 400){
+              console.log("tower Hit");
+              this.lastHit = this.now;
+              response.b.loseHealth();
           }
       }  
     }
@@ -180,6 +193,34 @@ game.EnemyBaseEntity = me.Entity.extend({
   
        onCollision: function(){
            
+       },
+       
+       loseHealth: function (){
+           this.health--;
        }
   
 });
+
+game.EnemyCreep = me.Entity.extend({
+    init: function( x, y, settings){
+        this._super(me.Entity, 'init', [x, y, {
+                image:"creep1",
+                width: 32,
+                height: 64,
+                spritewidth:"32",
+                spriteheight: "64",
+                getShape: function(){
+                   return(new me.Rect(0, 0, 64, 64)).toPolygon();   
+                }        
+        }]);
+    this.health = 10;
+    this.alwaysUpadte = true;
+    
+    this.setVelocity(3, 20);
+    
+    this.type = "EnnemyCreep";
+    this.renderable.addAnimation("walk" , [3, 4, 5], 80);
+    this.renderable.setCurrentAnimation 
+}   
+});
+    //this.
