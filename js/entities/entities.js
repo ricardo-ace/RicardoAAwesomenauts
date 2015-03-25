@@ -18,7 +18,7 @@ game.PlayerEntity = me.Entity.extend({
     this.lastHit = this.now;
     this.lastAttack = new Date().getTime(); 
     //the screen follows the player
-    me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH)
+    me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     //thiks is making the player walk in a certain animation 
     this.renderable.addAnimation("idle", [78]); 
     this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80); 
@@ -223,8 +223,16 @@ game.EnemyCreep = me.Entity.extend({
     this.renderable.setCurrentAnimation("walk");
     },
 
-    update: function(){
+    update: function(delta){
         
+        this.body.vel.x -= this.body.accel.x * me.timer.tick;   
+        
+        this.body.update(delta);
+        
+        
+        this._super(me.Entity, "update", [delta]);
+        
+        return true;
     }
 });
     
