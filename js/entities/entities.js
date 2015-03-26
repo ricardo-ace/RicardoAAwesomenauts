@@ -40,7 +40,7 @@ game.PlayerEntity = me.Entity.extend({
         }else if(me.input.isKeyPressed ("left")){
             this.facing = "left";
            this.body.vel.x -=this.body.accel.x * me.timer.tick;
-           this.flipx(false);   
+           this.flipX(false);   
         }else{
             this.body.vel.x = 0;
         }
@@ -75,7 +75,7 @@ game.PlayerEntity = me.Entity.extend({
         
         
          
-        me.colision.check(this, true, this.colliddeHandler.bind(this), true);
+        me.collision.check(this, true, this.collideHandler.bind(this), true);
         this.body.update(delta);
         
         this._super(me.Entity, "update", [delta]);
@@ -84,7 +84,7 @@ game.PlayerEntity = me.Entity.extend({
     
     
     collideHandler: function(response){
-      if(responnse.b.type==='EnemyBaseEntity'){
+      if(response.b.type==='EnemyBaseEntity'){
           var ydif = this.pos.y - response.b.y;
           var xdif = this.pos.x - response.b.x;
           
@@ -110,15 +110,15 @@ game.PlayerEntity = me.Entity.extend({
 });
 //it is making the players base tower
 game.PlayerBaseEntity = me.Entity.extend({
-  inik : function (x, y, settings){
+  init : function (x, y, settings){
       this._super(me.Entity, 'init', [x, y, {
               image:"tower",
               width: 100,
-              hieght: 100,
+              height: 100,
               spritewidth:"100",
               spriteheight:"100",
               getShape: function(){
-                  return (new me.Rect(0, 0, 100, 70)).Polygon();
+                  return (new me.Rect(0, 0, 100, 70)).toPolygon();
                   
               }
         }]);    
@@ -155,15 +155,15 @@ game.PlayerBaseEntity = me.Entity.extend({
 });
 //making the enemy Base tower
 game.EnemyBaseEntity = me.Entity.extend({
-  inik : function (x, y, settings){
+  init : function (x, y, settings){
       this._super(me.Entity, 'init', [x, y, {
               image:"tower",
               width: 100,
-              hieght: 100,
+              height: 100,
               spritewidth:"100",
               spriteheight:"100",
               getShape: function(){
-                  return (new me.Rect(0, 0, 100, 70)).Polygon();
+                  return (new me.Rect(0, 0, 100, 70)).toPolygon();
                   
               }
         }]);
