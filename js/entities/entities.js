@@ -63,7 +63,7 @@ game.PlayerEntity = me.Entity.extend({
     //checking if the right key was pressed
     update: function(delta){
         this.now = new Date().getTime();           
-        this.dead = checkIfDead();
+        this.dead = this.checkIfDead();
         this.checkKeyPressesAndMove();
         this.setAnimation();                   
         me.collision.check(this, true, this.collideHandler.bind(this), true);
