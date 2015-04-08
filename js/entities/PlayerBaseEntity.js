@@ -24,9 +24,11 @@ game.PlayerBaseEntity = me.Entity.extend({
          this.renderable.setCurrentAnimation("idle");
         
   },  
-    update: function(delta){
+  
+  update: function(delta){
         if(this.health<=0){
             this.broken = true; 
+            game.data.win = false;
             //making the buildings not burn  
             this.renderable.setCurrentAnimation("broken"); 
         }
@@ -41,7 +43,7 @@ game.PlayerBaseEntity = me.Entity.extend({
       this.health = this.health - damage;  
     },
   
-       onCollision: function(){
+  onCollision: function(){
            
        }
   

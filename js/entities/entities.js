@@ -31,7 +31,7 @@ game.PlayerEntity = me.Entity.extend({
         }]); 
     },
     
-    setPLayerTimers: function(){
+    setPlayerTimer: function(){
         this.now = new Date().getTime();
         this.lastHit = this.now; 
         this.attack = game.data.playerAttack;
@@ -212,6 +212,7 @@ game.PlayerEntity = me.Entity.extend({
             }
             return false;
     },
+            
     hitCreep : function (response){
          //if the creeps health is  less than our attack exexute code in  if statement 
                 if (response.b.health <= game.data.playerAttack ){

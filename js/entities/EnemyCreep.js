@@ -67,29 +67,29 @@ game.EnemyCreep = me.Entity.extend({
                 //damage of 1
                 response.b.loseHealth(game.data.enemyCreepAttack);
             }
-        }else if (response.b.type==='PlayerEntity') {
+        } else if (response.b.type === 'PlayerEntity') {
             var xdif = this.pos.x - response.b.pos.x;
-            
-            this.attacking=true;           
-            this.lastAttacking=this.now; 
-          
-           
-             if(xdif>0){
-                   //keeps mmoving the creep to the right
-                 this.pos.x = this.pos.x + 1;
-                 this.body.vel.x = 0;
-             }
+
+            this.attacking = true;
+            this.lastAttacking = this.now;
+
+
+            if (xdif > 0) {
+                //keeps mmoving the creep to the right
+                this.pos.x = this.pos.x + 1;
+                this.body.vel.x = 0;
+            }
             //check that it has been at least 1 second since the creep hit a base         
-            if((this.now-this.lastHit >= 1000) && xdif>0){
+            if ((this.now - this.lastHit >= 1000) && xdif > 0) {
                 //update the lasthit timer 
                 this.lastHit = this.now;
                 //makes the player base cal its loose health function and passes it a 
                 //damage of 1
                 console.log(response.b.health);
                 response.b.loseHealth(game.data.enemyCreepAttack);
-            
-           }
-            
+
+            }
+
         }
     }
     
