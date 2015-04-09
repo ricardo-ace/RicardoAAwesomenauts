@@ -117,7 +117,7 @@ game.PlayerEntity = me.Entity.extend({
     },
     
     setAnimation: function (){
-          if(this.attackiing){
+          if(this.attacking){
             if(!this.renderable.isCurrentAnimation("attack")){       
                 console.log(!this.renderable.isCurrentAnimation("attack"));
                 //sets the currentanimation to attack once that is over 
