@@ -145,7 +145,7 @@ game.PlayerEntity = me.Entity.extend({
     
     collideHandler: function(response){
       if(response.b.type==='EnemyBaseEntity'){
-       this.collideWithBase(response);
+       this.collideWithEnemyBase(response);
       }else if (response.b.type==='EnemyCreep'){
           this.collideWithEnemyCreep(response);
        }  
@@ -206,7 +206,6 @@ game.PlayerEntity = me.Entity.extend({
                   && (Math.abs(ydif) <=40) && 
                   (((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
                   ){
-              console.log(response.b.health);
               this.lastHit = this.now;
              return true;
             }
