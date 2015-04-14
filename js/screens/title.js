@@ -47,9 +47,14 @@ game.TitleScreen = me.ScreenObject.extend({
                     }, 
                     
                     newGame: function(){
+                        game.data.exp = me.save.exp;
+                        game.data.exp1 = me.save.exp;
+                        game.data.exp2 = me.save.exp;
+                        game.data.exp3 = me.save.exp;
+                        game.data.exp4 = me.save.exp;
                         me.input.releasePointerEvent('pointerdown', this);
                       
-                        me.state.change(me.state.PLAY);
+                        me.state.change(me.state.SPENDEXP);
                     }
                 })));
                 
