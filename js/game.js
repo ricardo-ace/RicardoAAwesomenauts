@@ -26,7 +26,9 @@ var game = {
                 exp2: 0,
                 exp3: 0, 
                 exp4: 0,
-                win: ""
+                win: "",
+                pausePos:"", 
+                buyscreen:""
 	},
 	
 	
@@ -74,7 +76,7 @@ var game = {
             
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
-                me.state.set(me.state.SPENDEXP, new game.spendExp());
+                me.state.set(me.state.SPENDEXP, new game.SpendExp());
                 
 		// Start the game.
 		me.state.change(me.state.MENU);
