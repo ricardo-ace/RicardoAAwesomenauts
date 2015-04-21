@@ -87,16 +87,19 @@ game.SpendGold = Object.extend({
     },
     
     update: function(){
-        this.now  = new Date().getTime();
-                
-                if(me.input.isKeyPressed("buy") && this.now-this.lastBuy >=1000){
-                    this.lastNuy = this.now;
-                    if(!this.buying){
-                        this.startBuying();
-                    }else{
-                        this.StopBuying();
-                    }
-                }
+        this.now = new Date().getTime();
+
+        if (me.input.isKeyPressed("buy") && this.now - this.lastBuy >= 1000) {
+            this.lastNuy = this.now;
+            if (!this.buying) {
+                this.startBuying();
+            } else {
+                this.StopBuying();
+            }
+        }
+
+        this.checkBuyKeys();
+        
         
         return true;
     },
@@ -128,16 +131,25 @@ game.SpendGold = Object.extend({
                       this.updateWhenPaused = true;
                       this.alwaysUpdate = true;
                     },
+                    
+                    
                     //ADDING TEXT TO THE EXP SCREEN
+                    
                     draw: function(renderer){
-                        this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, B TO EXIT", this.pos.x, this.pos.y);
+                        this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, B TO EXIT. Current Gold" + game.data.gold, this.pos.x, this.pos.y);
+                        this.font.draw(renderer.getContext(), "Skill 1: Increase Damage. Current Level: " + game.data.skill1 +((game.data.exp1+1)*10), this.pos.x, this.pos.y);
+                        this.font.draw(renderer.getContext(), "Skill 2: Run Faster!. Current Level: " + game.data.skill2 +((game.data.exp2+1)*10), this.pos.x, this.pos.y);
+                        this.font.draw(renderer.getContext(), "Skill 3: Increase Health. Current Level: " + game.data.skill3 +((game.data.exp3+1)*10), this.pos.x, this.pos.y);
+                        this.font.draw(renderer.getContext(), "Q Ability: Speed Burst. Current Level: " + game.data.ability1 +((game.data.exp4+1)*10), this.pos.x, this.pos.y);
+                        this.font.draw(renderer.getContext(), "W Ability: Eat Your Creep For Health: " + game.data.ability2 +((game.data.exp5+1)*10), this.pos.x, this.pos.y);
+                        this.font.draw(renderer.getContext(), "E Ability: Throw Your Spears:  " + game.data.ability3 +((game.data.exp6+1)*10), this.pos.x, this.pos.y);
+
                     }
                    
                 }));
                  me.game.world.addChild(game.data.buytext, 35);
                  
     },
-    
     
     stopBuying: function(){
       this.buying = false;
@@ -153,4 +165,41 @@ game.SpendGold = Object.extend({
       me.game.world.removeChild(game.data.buytext);
     }
     
+    checkBuyKeys: function(){
+        if(me.input.isKeyPressed("F1")){
+            if(this.checkCost(1)){
+                this.makePurchase(1);
+            }
+        }else if(me.input.isKeyPressed("F2")){
+            if(this.checkCost(2)){
+                this.makePurchase(2);
+            }
+        }else if(me.input.isKeyPressed("F3")){
+            if(this.checkCost(3)){
+                this.makePurchase(3);
+            }
+        }else if(me.input.isKeyPressed("F4")){
+            if(this.checkCost(4)){
+                this.makePurchase(4);
+            }
+        }else if(me.input.isKeyPressed("F5")){
+            if(this.checkCost(5)){
+                this.makePurchase(5);
+            }
+        }else if(me.input.isKeyPressed("F3")){
+            if(this.checkCost(6)){
+                this.makePurchase(6);
+            }
+        }
+    },
+    
+    checkCost: function(skill){
+        if(){
+            
+        }else
+    },
+    
+    makePurchase: function(skill){
+        
+    }
 });
