@@ -24,8 +24,8 @@ game.PlayScreen = me.ScreenObject.extend({
                 //making your player move telling you the buttons 
                 me.input.bindKey(me.input.KEY.B, "buy");
                 me.input.bindKey(me.input.KEY.Q, "skill");
-                me.input.bindKey(me.input.Key.W, "skill2");
-                me.input.bindKey(me.input.Key.E, "skill3");
+                me.input.bindKey(me.input.KEY.W, "skill2");
+                me.input.bindKey(me.input.KEY.E, "skill3");
                 me.input.bindKey(me.input.KEY.RIGHT, "right");
                 me.input.bindKey(me.input.KEY.LEFT, "left");
                 me.input.bindKey(me.input.KEY.SPACE, "jump");
