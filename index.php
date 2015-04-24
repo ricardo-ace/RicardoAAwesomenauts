@@ -29,13 +29,18 @@
 		<script type="text/javascript" src="js/entities/entities.js"></script>
                 <script type="text/javascript" src="js/entities/EnemyBaseEntity.js"></script>
                 <script type="text/javascript" src="js/entities/PlayerBaseEntity.js"></script>
-                <script type="text/javascript" src="js/entities/GameManager.js"></script>
+                <script type="text/javascript" src="js/gamemanager/GameManager.js"></script>
+                <script type="text/javascript" src="js/gamemanager/GameTimeManager.js"></script>
+                <script type="text/javascript" src="js/gamemanager/SpendGold.js"></script>
+                <script type="text/javascript" src="js/gamemanager/HeroDeathManager.js"></script>
                 <script type="text/javascript" src="js/entities/EnemyCreep.js"></script>
 		<script type="text/javascript" src="js/entities/HUD.js"></script>
 
 		<script type="text/javascript" src="js/screens/title.js"></script>
 		<script type="text/javascript" src="js/screens/play.js"></script>
                 <script type="text/javascript" src="js/screens/spendExp.js"></script>
+                <script type="text/javascript" src="js/screens/loadprofile.js"></script>
+                <script type="text/javascript" src="js/screens/newProfile.js"></script>
 		<!-- /build -->
 		<!-- Bootstrap & Mobile optimization tricks -->
 		<script type="text/javascript">
