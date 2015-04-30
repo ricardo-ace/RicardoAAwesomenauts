@@ -16,13 +16,5 @@
          . "exp4 int(4),"
          . "primary key(id))");
  
- if($query){
-     echo "<p> succesfull created table:users </p>";
-     
- }
-else{
-    echo"<p>" . $_SESSION["connection"]->error . "</p>";
-}
-
 
         
