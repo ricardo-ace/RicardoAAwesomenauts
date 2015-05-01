@@ -18,7 +18,7 @@
       //checking the pasword for logins 
      if($query-> num_rows == 1){
          $rows = $query->fetch_array();
-
+         //this is protecting he pasword by encrypting it
          if($row["password"] === crypt ($password, $row["salt"])){
              $_SESSION["authenticated"] = true;
              $arrray["exp"] = $row["exp"];
@@ -31,9 +31,11 @@
              echo json_encode($array);
          }
          else{
+             //this tells you if you had an invalid username
              echo "Invalid username and password";
          }
      }
      else{
+         //this tells you if you had an invalid password
              echo "Invalid username and password";
      }

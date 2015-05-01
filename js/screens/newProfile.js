@@ -1,4 +1,4 @@
-game.newProfile = me.ScreenObject.extend({
+game.NewProfile = me.ScreenObject.extend({
 	/**	
 	 *  action to perform on state change
 	 */
@@ -7,6 +7,7 @@ game.newProfile = me.ScreenObject.extend({
                 document.getElementById("input").style.visibility = "visisble";
                 document.getElementById("register").style.wisisbiity = "visisble";
                 
+                // assigning button keys 
                 me.input.unbindKey(me.input.KEY.Q);
                 me.input.unbindKey(me.input.KEY.B);
                 me.input.unbindKey(me.input.KEY.E);
@@ -31,7 +32,8 @@ game.newProfile = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
+            // this is to hide the register button so it wont just be there 
 	        document.getElementById("input").style.visibility = "hidden";
-                document.getElementById("register").style.wisisbiity = "hidden";
+                document.getElementById("register").style.visibility = "hidden";
 	}
 });

@@ -93,17 +93,18 @@
 				}
 			});
 		</script>
-                <script>
-                    $("#mainmenu").bind("click", function(){
+                <script> 
+                    $(" #mainMenu ").bind("click", function(){
                         me.state.change(me.state.MENU);
                     });
-                    $("#register").bind("click", function(){
+                    //this is for the registration
+                    $(" #register ").bind("click", function(){
                       $ajax({
-                          type: "post",
+                          type: "POST",
                           url: "php/controller/create-user.php",
                           data:  {
                               username: $('#username').val(),
-                              password: $('#password').val(),
+                              password: $('#password').val()
                           },
                           dataType: "text"
                       })
@@ -118,6 +119,7 @@
                          alert("Fail"); 
                       });
                     });
+                    // this is loading jquery
                        $("#load").bind("click", function(){
                       $ajax({
                           type: "POST",
@@ -128,6 +130,7 @@
                           },
                           dataType: "text"
                       })
+                      // if you put it wrong it tells you
                          .success(function(response){
                           if(response==="Invalid username and password"){
                                 alert(response);                            

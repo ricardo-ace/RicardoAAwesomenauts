@@ -19,6 +19,7 @@ game.SpendExp = me.ScreenObject.extend({
                       this.font = new me.Font("arial", 26, "white");
                     },
                     //ADDING TEXT TO THE EXP SCREEN
+                    //also putting the buttons if you want to buy something or upgrade
                     draw: function(renderer){
                         this.font.draw(renderer.getContext(), "PRESS F1-F4 TO BUY, F5 TO SKIP", this.pos.x, this.pos.y);
                         this.font.draw(renderer.getContext(), "CURRENT EXP:" + game.data.exp.toString(), this.pos.x + 100, this.pos.y + 50);
@@ -29,7 +30,7 @@ game.SpendExp = me.ScreenObject.extend({
                     }
                    
                 })));
-                
+                //this is the buttons to press if you want to buy something 
                 this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keycode, edge){
                   if(action === "F1"){
                       if(game.data.exp >= exp1cost){
