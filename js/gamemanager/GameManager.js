@@ -21,17 +21,17 @@ game.ExperienceManager = Object.extend({
     },
     
     gameOver : function(win){
-        if(win){
-            game.data.exp += 10;
-        }else{
+         if(win){
+                game.data.exp += 10;
+        } else{
             game.data.exp += 1;
         }
-          
+          //its saves  the game 
            this.gameover = true;
            me.save.exp = game.data.exp;
           
          //it is saving our jquery
-                      $ajax({
+                      $.ajax({
             type: "post",
                     url: "php/controller/save-user.php",
                     data:  {

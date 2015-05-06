@@ -22,10 +22,10 @@
          if($row["password"] === crypt ($password, $row["salt"])){
              $_SESSION["authenticated"] = true;
              $arrray["exp"] = $row["exp"];
-             $arrray["exp1"] = $row["exp"];
-             $arrray["exp2"] = $row["exp"];
-             $arrray["exp3"] = $row["exp"];
-             $arrray["exp4"] = $row["exp"];
+             $arrray["exp1"] = $row["exp1"];
+             $arrray["exp2"] = $row["exp2"];
+             $arrray["exp3"] = $row["exp3"];
+             $arrray["exp4"] = $row["exp4"];
              $_SESSION["name"] = $username; 
              
              echo json_encode($array);

@@ -5,8 +5,8 @@ game.LoadProfile = me.ScreenObject.extend({
 	onResetEvent: function() {	
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('load-screen')), -10); // TODO
                 
-                document.getElementById("input").style.visibility = "visisble";
-                document.getElementById("load").style.wisisbiity = "visisble";
+                document.getElementById("input").style.visibility = "visible";
+                document.getElementById("load").style.visibility = "visible";
                 
                 
                 me.input.unbindKey(me.input.KEY.Q);
@@ -34,7 +34,7 @@ game.LoadProfile = me.ScreenObject.extend({
 	 */
 	onDestroyEvent: function() {
 	   document.getElementById("input").style.visibility = "hidden";
-           document.getElementById("load").style.wisisbiity = "hidden";     
+           document.getElementById("load").style.visibility = "hidden";     
 	}
 });
 
